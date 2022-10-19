@@ -18,7 +18,7 @@ For example I am now updating my home page using it. If you want to do the same 
                 runs-on: ubuntu-latest
                 steps:
                 - uses: actions/checkout@v2
-                - uses: SGURLY/git-to-composer-storage@1
+                - uses: SGURLY/goolge-cloud-composer-auto-deployment@git-google-cloud-composer-gcs-sync
                 with:
                     secrets: ${{ secrets.secrets }}
                     bucket: <bucket>
