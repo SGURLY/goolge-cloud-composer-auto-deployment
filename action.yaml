@@ -9,4 +9,4 @@ runs:
   image: Dockerfile
 branding:
   icon: database
-  color: blue
+  color: purple
