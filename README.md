@@ -11,16 +11,17 @@ For example I am now updating my home page using it. If you want to do the same 
 6. add a Workflow to your repo like this: 
         on:
             push:
-                branches: [master]
+                branches: [main]
         jobs:
             sync_gcs:
                 if: ${{ false }}
                 runs-on: ubuntu-latest
                 steps:
                 - uses: actions/checkout@v2
-                - uses: nakilon/git-to-gcs@1
+                - uses: SGURLY/git-to-composer-storage@1
                 with:
                     secrets: ${{ secrets.secrets }}
+                    bucket: <bucket>
 
 
 
