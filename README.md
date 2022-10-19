@@ -4,12 +4,27 @@ After pushing to the master branch of the repository that uses this Github Actio
 
 For example I am now updating my home page using it. If you want to do the same see the following steps. Note that if you don't want to have a public web page and just want to use it to "git push to the bucket" you don't have to neither make your repo public nor add the AllUsers user.
 
-1. make a public static website bucket as explained in relevant [GCP docs](https://cloud.google.com/storage/docs/hosting-static-website)
-2. create a Service account without any permissions and download its key file
-3. add it in the bucket's permissions settings as Object Admin (finding it by its email)
+1. create a Service account without any permissions and download its key file
+2. add it in the composers bucket permissions settings as Object Admin (finding it by its email)
 4. make a Github repo and a directory in it with the same name as your bucket (designed to be able to update multiple buckets from a single repo)
-5. in the Secrets tab of repo settings add a secret named "secrets" in the folllowing format: `<bucket1 name> <base64 of the key file> <bucket2 name> <base64 of the key file> ...`
-6. add a Workflow to your repo like this: https://github.com/Nakilon/www-nakilon-pro/blob/master/.github/workflows/sync_with_gcs.yaml
+5. in the Secrets tab of repo settings add a secret named "bucket" in the folllowing format: `<bucket name> <base64 of the key file> <bucket2 name> <base64 of the key file> ...`
+6. add a Workflow to your repo like this: 
+        on:
+            push:
+                branches: [master]
+        jobs:
+            sync_gcs:
+                if: ${{ false }}
+                runs-on: ubuntu-latest
+                steps:
+                - uses: actions/checkout@v2
+                - uses: nakilon/git-to-gcs@1
+                with:
+                    secrets: ${{ secrets.secrets }}
+
+
+
+
 
 ---
 
