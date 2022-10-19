@@ -1,5 +1,5 @@
-name: Git to GCS
-description: Sync Google Cloud Storage buckets with git repo folders
+name: Git to Composer Storage
+description: Sync DAGS and Plugins buckets with git repo folders
 inputs:
   secrets:
     description: Space delimited list of buckets and base64 of corresponding access key files
